@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aetheria | Perjalanan Luar Angkasa Mewah</title>
+    <meta name="description" content="Jelajahi keindahan alam semesta bersama Aetheria. Nikmati petualangan luar angkasa mewah ke Bulan, Mars, dan destinasi eksotis lainnya.">
+    <!-- Google Fonts: Space Grotesk & Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Stars & Aurora Background Overlay -->
+    <div class="stars-bg"></div>
+    <div class="glow-orb" id="orb-1"></div>
+    <div class="glow-orb" id="orb-2"></div>
+
+    <!-- Navigation Header -->
+    <header class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="ph-bold ph-planet logo-icon"></i>
+                <span>AETHERIA</span>
+            </a>
+            
+            <nav class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link active">Beranda</a>
+                <a href="#destinations" class="nav-link">Destinasi</a>
+                <a href="#experience" class="nav-link">Pengalaman</a>
+                <a href="#booking" class="nav-link nav-cta">Pesan Kursi</a>
+            </nav>
+
+            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Menu">
+                <i class="ph-bold ph-list hamburger-icon"></i>
+                <i class="ph-bold ph-x close-icon"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        
+        <!-- Hero Section -->
+        <section class="hero-section" id="home">
+            <div class="hero-content">
+                <div class="badge fade-in">
+                    <i class="ph-bold ph-sparkle"></i> Era Baru Pariwisata Angkasa
+                </div>
+                <h1 class="hero-title fade-in delay-1">Jelajahi Batas Terluar <span class="gradient-text">Semesta</span></h1>
+                <p class="hero-subtitle fade-in delay-2">Rasakan kemewahan tiada tanding dalam ekspedisi antarbintang. Dari kubah observasi Bulan hingga lembah kemerahan Mars, takdir Anda menanti di antara bintang-bintang.</p>
+                <div class="hero-actions fade-in delay-3">
+                    <a href="#booking" class="btn btn-primary">Mulai Perjalanan <i class="ph-bold ph-arrow-right"></i></a>
+                    <a href="#destinations" class="btn btn-secondary">Lihat Destinasi</a>
+                </div>
+            </div>
+            <div class="scroll-indicator fade-in delay-4">
+                <span>Gulir untuk Menjelajah</span>
+                <i class="ph-bold ph-caret-double-down scroll-arrow"></i>
+            </div>
+        </section>
+
+        <!-- Destinations Section -->
+        <section class="destinations-section" id="destinations">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Destinasi Ekspedisi</h2>
+                    <p class="section-subtitle">Pilihlah petualangan kosmik Anda berikutnya. Setiap destinasi menawarkan keunikan dan fasilitas premium.</p>
+                    
+                    <!-- Destination Filters -->
+                    <div class="filter-group">
+                        <button class="filter-btn active" data-filter="all">Semua</button>
+                        <button class="filter-btn" data-filter="solar">Sistem Surya</button>
+                        <button class="filter-btn" data-filter="exotic">Eksotis & Jauh</button>
+                    </div>
+                </div>
+
+                <div class="destinations-grid" id="destinations-grid">
+                    <!-- Destination 1: The Moon -->
+                    <div class="dest-card" data-category="solar">
+                        <div class="card-image-container">
+                            <img src="https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&q=80&w=800" alt="Luna Outpost" class="card-img" crossorigin="anonymous">
+                            <span class="card-tag">Terpopuler</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-meta">
+                                <span class="duration"><i class="ph-fill ph-clock"></i> 3 Hari Perjalanan</span>
+                                <span class="rating"><i class="ph-fill ph-star"></i> 4.9</span>
+                            </div>
+                            <h3 class="card-title">Luna Haven Resort</h3>
+                            <p class="card-text">Bermalam di bawah kubah kaca termewah di kawah Copernicus. Nikmati golf gravitasi rendah dan pemandangan Bumi yang menakjubkan.</p>
+                            <div class="card-price-row">
+                                <div class="price-info">
+                                    <span class="price-label">Mulai dari</span>
+                                    <span class="price-val">$150,000</span>
+                                </div>
+                                <a href="#booking" class="card-btn" data-dest="Luna Haven Resort"><i class="ph-bold ph-arrow-up-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Destination 2: Mars -->
+                    <div class="dest-card" data-category="solar">
+                        <div class="card-image-container">
+                            <img src="https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&q=80&w=800" alt="Mars Colony" class="card-img" crossorigin="anonymous">
+                            <span class="card-tag">Petualangan</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-meta">
+                                <span class="duration"><i class="ph-fill ph-clock"></i> 6 Bulan Perjalanan</span>
+                                <span class="rating"><i class="ph-fill ph-star"></i> 4.8</span>
+                            </div>
+                            <h3 class="card-title">Ares Grand Canyon</h3>
+                            <p class="card-text">Jelajahi kemegahan Valles Marineris. Ekspedisi gurun merah yang menantang dengan kenyamanan kapsul hotel bintang lima.</p>
+                            <div class="card-price-row">
+                                <div class="price-info">
+                                    <span class="price-label">Mulai dari</span>
+                                    <span class="price-val">$750,000</span>
+                                </div>
+                                <a href="#booking" class="card-btn" data-dest="Ares Grand Canyon"><i class="ph-bold ph-arrow-up-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Destination 3: Kepler 186f -->
+                    <div class="dest-card" data-category="exotic">
+                        <div class="card-image-container">
+                            <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&q=80&w=800" alt="Kepler-186f" class="card-img" crossorigin="anonymous">
+                            <span class="card-tag">Impian</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-meta">
+                                <span class="duration"><i class="ph-fill ph-clock"></i> Lompatan Quantum</span>
+                                <span class="rating"><i class="ph-fill ph-star"></i> 5.0</span>
+                            </div>
+                            <h3 class="card-title">Kepler-186f Sanctuary</h3>
+                            <p class="card-text">Dunia bervegetasi merah di zona layak huni. Pengalaman tak terlupakan menyeberangi lautan asing di bawah langit bintang kerdil merah.</p>
+                            <div class="card-price-row">
+                                <div class="price-info">
+                                    <span class="price-label">Mulai dari</span>
+                                    <span class="price-val">$2,400,000</span>
+                                </div>
+                                <a href="#booking" class="card-btn" data-dest="Kepler-186f Sanctuary"><i class="ph-bold ph-arrow-up-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Destination 4: Saturn Rings -->
+                    <div class="dest-card" data-category="solar">
+                        <div class="card-image-container">
+                            <img src="https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&q=80&w=800" alt="Saturn Rings" class="card-img" crossorigin="anonymous">
+                            <span class="card-tag">Kecantikan</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-meta">
+                                <span class="duration"><i class="ph-fill ph-clock"></i> 12 Bulan Perjalanan</span>
+                                <span class="rating"><i class="ph-fill ph-star"></i> 4.9</span>
+                            </div>
+                            <h3 class="card-title">Saturn Orbit Station</h3>
+                            <p class="card-text">Menatap cincin Saturnus yang megah dari kapal stasiun luar angkasa mewah. Pengalaman zero-g spa terbaik di tata surya.</p>
+                            <div class="card-price-row">
+                                <div class="price-info">
+                                    <span class="price-label">Mulai dari</span>
+                                    <span class="price-val">$1,200,000</span>
+                                </div>
+                                <a href="#booking" class="card-btn" data-dest="Saturn Orbit Station"><i class="ph-bold ph-arrow-up-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section class="experience-section" id="experience">
+            <div class="container">
+                <div class="grid-two-cols">
+                    <div class="experience-visual">
+                        <div class="visual-stack">
+                            <div class="glow-backdrop"></div>
+                            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800" alt="Space Dining" class="visual-img main-visual" crossorigin="anonymous">
+                            <div class="visual-floating-card">
+                                <i class="ph-fill ph-rocket-launch"></i>
+                                <div>
+                                    <h4>Kecepatan Warp</h4>
+                                    <p>Propulsi fusi teraman</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="experience-text">
+                        <div class="badge"><i class="ph-bold ph-shield-check"></i> Standard Keamanan Tertinggi</div>
+                        <h2 class="section-title text-left">Gaya Hidup Antariksa Tanpa Batas</h2>
+                        <p class="section-subtitle text-left">Kami merancang setiap detail perjalanan Anda agar selaras dengan kemewahan di Bumi. Petualangan ekstrem berpadu dengan ketenangan paripurna.</p>
+                        
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="ph-bold ph-chef-hat"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h3>Kuliner Gravitasi Nol</h3>
+                                    <p>Hidangan bintang Michelin yang disiapkan khusus oleh chef internasional untuk dinikmati dalam kondisi tanpa bobot.</p>
+                                </div>
+                            </div>
+
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="ph-bold ph-eye"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h3>Kubah Observasi 360 Derajat</h3>
+                                    <p>Kaca silika kristal yang diperkuat untuk memandang kosmos tanpa distorsi, bintang-bintang menjadi lebih dekat dari sebelumnya.</p>
+                                </div>
+                            </div>
+
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="ph-bold ph-heartbeat"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h3>Klinik Kebugaran Quantum</h3>
+                                    <p>Terapi fisik dan aklimatisasi biologis pra-penerbangan agar tubuh Anda tetap prima selama melintasi gravitasi berbeda.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Booking Section -->
+        <section class="booking-section" id="booking">
+            <div class="container">
+                <div class="booking-card">
+                    <div class="booking-grid">
+                        <div class="booking-info-side">
+                            <h2>Reservasi Tiket Bintang Anda</h2>
+                            <p>Kuota keberangkatan sangat terbatas demi kenyamanan maksimal. Pesan kursi Anda hari ini dan jadilah pionir peradaban galaksi.</p>
+                            
+                            <ul class="booking-benefits">
+                                <li><i class="ph-bold ph-check-circle"></i> Asuransi Perjalanan Kosmik Penuh</li>
+                                <li><i class="ph-bold ph-check-circle"></i> Pelatihan Astronaut Privat 2 Minggu</li>
+                                <li><i class="ph-bold ph-check-circle"></i> Akses VIP ke Lounge Peluncuran</li>
+                            </ul>
+
+                            <div class="contact-mini">
+                                <div class="contact-icon"><i class="ph-bold ph-phone-call"></i></div>
+                                <div>
+                                    <span class="mini-label">Hubungi Pramutamu 24/7</span>
+                                    <span class="mini-phone">+1 (800) AETHERIA</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="booking-form-side">
+                            <form id="reservation-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="full-name">Nama Lengkap</label>
+                                        <input type="text" id="full-name" placeholder="cth. Deddy Prasetyo" required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="email-address">Alamat Email</label>
+                                        <input type="email" id="email-address" placeholder="cth. deddy@space.com" required>
+                                    </div>
+                                </div>
+                                <div class="form-row-cols-2">
+                                    <div class="form-group">
+                                        <label for="destination-select">Tujuan Ekspedisi</label>
+                                        <select id="destination-select" required>
+                                            <option value="" disabled selected>Pilih Destinasi</option>
+                                            <option value="Luna Haven Resort">Luna Haven Resort</option>
+                                            <option value="Ares Grand Canyon">Ares Grand Canyon</option>
+                                            <option value="Kepler-186f Sanctuary">Kepler-186f Sanctuary</option>
+                                            <option value="Saturn Orbit Station">Saturn Orbit Station</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="departure-date">Tanggal Keberangkatan</label>
+                                        <input type="date" id="departure-date" required>
+                                    </div>
+                                </div>
+                                <div class="form-row-cols-2">
+                                    <div class="form-group">
+                                        <label for="travel-class">Kelas Perjalanan</label>
+                                        <select id="travel-class" required>
+                                            <option value="first">First Class (Private Pod)</option>
+                                            <option value="business">Business Class</option>
+                                            <option value="experience">Voyager Premium</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="crew-count">Jumlah Awak</label>
+                                        <input type="number" id="crew-count" min="1" max="10" value="1" required>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block" id="btn-submit">
+                                    <span class="btn-text">Ajukan Reservasi</span>
+                                    <i class="ph-bold ph-paper-plane-tilt"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-top">
+            <div class="container footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <i class="ph-bold ph-planet logo-icon"></i>
+                        <span>AETHERIA</span>
+                    </a>
+                    <p class="brand-desc">Melayani peradaban manusia untuk menjelajah, berekspansi, dan menikmati indahnya kosmos dengan standar keselamatan dan kenyamanan tertinggi.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Twitter"><i class="ph-bold ph-twitter-logo"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="ph-bold ph-instagram-logo"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="ph-bold ph-youtube-logo"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links-col">
+                    <h4>Navigasi</h4>
+                    <ul>
+                        <li><a href="#home">Beranda</a></li>
+                        <li><a href="#destinations">Destinasi</a></li>
+                        <li><a href="#experience">Pengalaman</a></li>
+                        <li><a href="#booking">Pesan Tiket</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links-col">
+                    <h4>Legal & Bantuan</h4>
+                    <ul>
+                        <li><a href="#">Syarat & Ketentuan</a></li>
+                        <li><a href="#">Kebijakan Privasi</a></li>
+                        <li><a href="#">FAQ Perjalanan</a></li>
+                        <li><a href="#">Karir Astronaut</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-news">
+                    <h4>Buletin Kosmik</h4>
+                    <p>Dapatkan pembaruan rute bintang terbaru dan diskon kuota penerbangan.</p>
+                    <form class="news-form" id="newsletter-form">
+                        <input type="email" placeholder="Email Anda" required aria-label="Email untuk Newsletter">
+                        <button type="submit" aria-label="Kirim"><i class="ph-bold ph-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container bottom-row">
+                <p>&copy; 2026 Aetheria Space Voyages. Seluruh hak cipta dilindungi.</p>
+                <div class="footer-badges">
+                    <span><i class="ph-fill ph-shield-check"></i> FAA Certified Space Operator</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification & Modal -->
+    <div class="toast" id="booking-toast">
+        <div class="toast-content">
+            <i class="ph-bold ph-check-circle toast-icon"></i>
+            <div class="toast-message">
+                <h4 id="toast-title">Pendaftaran Berhasil!</h4>
+                <p id="toast-desc">Pramutamu Aetheria akan segera menghubungi Anda melalui email.</p>
+            </div>
+        </div>
+        <button class="toast-close" id="toast-close-btn"><i class="ph-bold ph-x"></i></button>
+    </div>
+
+    <!-- JavaScript File -->
+    <script src="script.js"></script>
+</body>
+</html>
