@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas 4 - jQuery AJAX</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- jQuery library CDN (3.6.0) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <style>
+        :root {
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            --text-dark: #0f172a;
+            --text-gray: #475569;
+            --primary-color: #0284c7;
+            --primary-hover: #0369a1;
+            --secondary-color: #4f46e5;
+            --secondary-hover: #4338ca;
+            --border-color: #e2e8f0;
+            --bg-code: #1e1e2f;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            padding: 3rem 1.5rem;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        header h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+        }
+
+        /* Notice / Warning */
+        .cors-notice {
+            background-color: #fffbeb;
+            border: 1px solid #fef3c7;
+            border-left: 4px solid #f59e0b;
+            color: #b45309;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 992px) {
+            .grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .full-width {
+                grid-column: span 2;
+            }
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .card-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-desc {
+            font-size: 0.92rem;
+            color: var(--text-gray);
+            margin-top: 0.5rem;
+        }
+
+        .playground {
+            background-color: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            min-height: 180px;
+            overflow-y: auto;
+        }
+
+        .playground h1 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .playground p {
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.65rem 1.3rem;
+            font-size: 0.92rem;
+            font-weight: 500;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            color: white;
+        }
+
+        .btn-sky {
+            background-color: var(--primary-color);
+        }
+
+        .btn-sky:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-indigo {
+            background-color: var(--secondary-color);
+        }
+
+        .btn-indigo:hover {
+            background-color: var(--secondary-hover);
+        }
+
+        .code-block {
+            background-color: var(--bg-code);
+            color: #a6accd;
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.82rem;
+            overflow-x: auto;
+            margin-top: 1.5rem;
+        }
+
+        .placeholder-text {
+            color: #94a3b8;
+            font-style: italic;
+        }
+
+        /* Virtual Console Panel */
+        .console-panel {
+            background-color: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 1.25rem;
+            color: #38bdf8;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.85rem;
+            height: 150px;
+            overflow-y: auto;
+            margin-top: 1rem;
+        }
+
+        .console-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #334155;
+            padding-bottom: 0.4rem;
+            margin-bottom: 0.6rem;
+            color: #94a3b8;
+            font-weight: bold;
+        }
+
+        .console-clear {
+            cursor: pointer;
+            color: #ef4444;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- Header -->
+        <header>
+            <h1>Tugas 4 - jQuery AJAX</h1>
+            <p>Implementasi Metode <code>.load()</code> dan <code>$.ajax()</code> menggunakan jQuery dan Web Server</p>
+        </header>
+
+        <!-- CORS Notice -->
+        <div class="cors-notice">
+            <strong>Catatan Keamanan (CORS):</strong> Halaman ini dijalankan melalui server web lokal (seperti Python HTTP Server atau Apache XAMPP). AJAX <strong>tidak akan berjalan</strong> jika Anda membuka berkas HTML secara langsung dari folder komputer Anda (menggunakan protokol <code>file:///</code>) karena diblokir oleh kebijakan keamanan browser modern.
+        </div>
+
+        <!-- Grid -->
+        <div class="grid">
+            
+            <!-- Card 1: jQuery .load() Method -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">1. Metode jQuery .load()</h2>
+                    <p class="card-desc">Metode AJAX sederhana untuk meminta data dari server dan memasukkan konten HTML yang dikembalikan langsung ke elemen target.</p>
+                </div>
+                
+                <div class="playground" id="demo-load">
+                    <p class="placeholder-text">Konten ajax_info.txt belum dimuat. Klik tombol di bawah...</p>
+                </div>
+                
+                <div class="actions">
+                    <button id="changeBtnLoad" class="btn btn-sky">Load Content (Sederhana)</button>
+                </div>
+
+                <div class="code-block">
+<pre>$(document).ready(function() {
+  $("#changeBtnLoad").click(function() {
+    $("#demo-load").load("ajax_info.txt");
+  });
+});</pre>
+                </div>
+            </div>
+
+            <!-- Card 2: jQuery $.ajax() Method -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">2. Metode jQuery $.ajax()</h2>
+                    <p class="card-desc">Fungsi AJAX lengkap yang menawarkan kontrol mendalam atas parameter request (GET/POST, header, data, timeout, sukses/gagal callback).</p>
+                </div>
+                
+                <div class="playground" id="demo-ajax">
+                    <p class="placeholder-text">Konten ajax_info.txt belum dimuat. Klik tombol di bawah...</p>
+                </div>
+                
+                <div class="actions">
+                    <button id="changeBtnAjax" class="btn btn-indigo">Request AJAX (Mendalam)</button>
+                </div>
+
+                <div class="code-block">
+<pre>$.ajax({
+  url: "ajax_info.txt",
+  type: "GET",
+  dataType: "html",
+  success: function(result) {
+    $("#demo-ajax").html(result);
+  },
+  error: function(xhr, status, error) {
+    $("#demo-ajax").html("Error: " + error);
+  }
+});</pre>
+                </div>
+            </div>
+
+            <!-- Virtual Console Panel (Full Width) -->
+            <div class="card full-width">
+                <div class="card-header" style="margin-bottom: 0.5rem;">
+                    <h2 class="card-title">Log Konsol AJAX Virtual</h2>
+                    <p class="card-desc">Mencatat status pemanggilan callback dari server (Success, Error, Complete) secara real-time.</p>
+                </div>
+                
+                <div class="console-header">
+                    <span>VIRTUAL_CONSOLE_OUTPUT</span>
+                    <span id="console-clear-btn" class="console-clear">Clear</span>
+                </div>
+                <div class="console-panel" id="virtual-console">
+                    <div>[CONSOLE READY] Menunggu pemicu AJAX...</div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- jQuery Interactivity & AJAX Implementation -->
+    <script>
+        $(document).ready(function() {
+            
+            // Console logger helper
+            function logToVirtualConsole(message, type = 'info') {
+                const now = new Date();
+                const timeStr = now.toTimeString().split(' ')[0];
+                let color = '#38bdf8'; // info
+                
+                if (type === 'success') color = '#4ade80';
+                if (type === 'error') color = '#f87171';
+                if (type === 'complete') color = '#a78bfa';
+
+                $("#virtual-console").append(`<div style="color: ${color}">[${timeStr}] ${message}</div>`);
+                
+                // Auto scroll to bottom
+                const vc = document.getElementById("virtual-console");
+                vc.scrollTop = vc.scrollHeight;
+            }
+
+            $("#console-clear-btn").click(function() {
+                $("#virtual-console").html("<div>[CONSOLE CLEARED]</div>");
+            });
+
+            // 1. Metode .load()
+            $("#changeBtnLoad").click(function() {
+                logToVirtualConsole("Memulai request: $('#demo-load').load('ajax_info.txt')...");
+                
+                $("#demo-load").load("ajax_info.txt", function(response, status, xhr) {
+                    if (status == "success") {
+                        logToVirtualConsole("Metode .load() berhasil memuat konten!", "success");
+                    } else {
+                        logToVirtualConsole("Metode .load() gagal: " + xhr.status + " " + xhr.statusText, "error");
+                    }
+                });
+            });
+
+            // 2. Metode $.ajax()
+            $("#changeBtnAjax").click(function() {
+                logToVirtualConsole("Memulai request: $.ajax({ url: 'ajax_info.txt' })...");
+                
+                $.ajax({
+                    url: "ajax_info.txt",
+                    type: "GET",
+                    data: {
+                        id: 123,
+                        name: "John"
+                    },
+                    dataType: "html",
+                    timeout: 5000,
+                    
+                    // Callback ketika request berhasil
+                    success: function(result) {
+                        $("#demo-ajax").html(result);
+                        logToVirtualConsole("success callback: data berhasil diterima dari server!", "success");
+                    },
+                    
+                    // Callback ketika request gagal
+                    error: function(xhr, status, error) {
+                        $("#demo-ajax").html("<span style='color:#ef4444;'>Error: Gagal memuat data (" + error + ")</span>");
+                        logToVirtualConsole("error callback: request gagal! Status: " + status + ", Detail: " + error, "error");
+                    },
+                    
+                    // Callback yang selalu dijalankan setelah selesai (sukses maupun gagal)
+                    complete: function(xhr, status) {
+                        logToVirtualConsole("complete callback: transaksi AJAX selesai. Status: " + status, "complete");
+                        console.log("Request completed with status: " + status);
+                    }
+                });
+            });
+            
+        });
+    </script>
+
+</body>
+</html>
