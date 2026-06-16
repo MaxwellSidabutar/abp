@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas 3 - Library jQuery</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- jQuery library CDN (3.7.1) -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    
+    <style>
+        :root {
+            --bg-body: #f3f4f6;
+            --bg-card: #ffffff;
+            --text-dark: #1f2937;
+            --text-gray: #4b5563;
+            --primary-color: #4f46e5;
+            --primary-hover: #4338ca;
+            --accent-green: #98bf21;
+            --border-color: #e5e7eb;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            padding: 3rem 1.5rem;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        header h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .full-width {
+                grid-column: span 2;
+            }
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .card-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-desc {
+            font-size: 0.92rem;
+            color: var(--text-gray);
+            margin-top: 0.5rem;
+        }
+
+        .playground {
+            background-color: #f9fafb;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            min-height: 140px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Container specific for keeping absolute positioned div within visual bounds */
+        .anim-container {
+            position: relative;
+            height: 110px;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .anim-box {
+            background-color: var(--accent-green);
+            height: 100px;
+            width: 100px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 6px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.6rem 1.2rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-gray);
+            margin-right: 0.5rem;
+        }
+
+        .btn-outline:hover {
+            background-color: #f3f4f6;
+            color: var(--text-dark);
+        }
+
+        .code-block {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            margin-top: 1rem;
+        }
+
+        .hello-p {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- Header -->
+        <header>
+            <h1>Tugas 3 - Pustaka jQuery</h1>
+            <p>Implementasi jQuery CDN, Efek Hide/Show, dan Animasi Tinggi (Height Toggle)</p>
+        </header>
+
+        <!-- Grid Cards -->
+        <div class="grid">
+            
+            <!-- Card 1: Hello World (Local/CDN) -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">1 & 2. Cara Kerja jQuery (Hello World)</h2>
+                    <p class="card-desc">Menggunakan event <code>$(document).ready()</code> untuk mengeksekusi fungsi setelah struktur dokumen HTML sepenuhnya dimuat.</p>
+                </div>
+                
+                <div class="playground">
+                    <p id="hello-output" class="text-muted">Klik tombol di bawah untuk memicu respon jQuery...</p>
+                </div>
+                
+                <div class="actions">
+                    <button id="hello-btn" class="btn btn-primary">Picu "Hello, World!"</button>
+                </div>
+
+                <div class="code-block">
+<pre>$(document).ready(function() {
+  $("#hello-output").html("Hello, World!");
+});</pre>
+                </div>
+            </div>
+
+            <!-- Card 2: Hide & Show Effect -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">6.6.1. Efek Hide / Show</h2>
+                    <p class="card-desc">Menggunakan selektor ID untuk menangkap klik tombol, kemudian memanggil efek <code>hide()</code> dan <code>show()</code> pada tag paragraf.</p>
+                </div>
+                
+                <div class="playground">
+                    <p class="hide-show-p text-dark fw-medium">Jika Anda mengklik tombol "Hide", teks paragraf ini akan menghilang.</p>
+                </div>
+                
+                <div class="actions">
+                    <button id="hide" class="btn btn-outline">Hide</button>
+                    <button id="show" class="btn btn-primary">Show</button>
+                </div>
+
+                <div class="code-block">
+<pre>$("#hide").click(function() {
+  $("p").hide();
+});
+$("#show").click(function() {
+  $("p").show();
+});</pre>
+                </div>
+            </div>
+
+            <!-- Card 3: Height Toggle Animation (Full Width in Grid) -->
+            <div class="card full-width">
+                <div class="card-header">
+                    <h2 class="card-title">6.6.2. Efek Animasi (Toggle Height)</h2>
+                    <p class="card-desc">Menggunakan metode <code>animate()</code> dengan parameter <code>{ height: 'toggle' }</code> untuk menyembunyikan dan memunculkan kotak elemen dengan efek meluncur.</p>
+                </div>
+                
+                <div class="playground" style="min-height: 250px;">
+                    <p class="text-secondary mb-2">Klik tombol berulang kali untuk melihat transisi tinggi kotak di bawah ini.</p>
+                    <p class="small text-muted mb-3">Secara default, elemen HTML berposisi statis. Untuk memanipulasi posisinya secara absolut, atur <code>position: absolute</code> pada elemen tersebut.</p>
+                    
+                    <div class="anim-container">
+                        <div id="anim-box" class="anim-box"></div>
+                    </div>
+                </div>
+                
+                <div class="actions">
+                    <button id="animate-btn" class="btn btn-primary">Mulai Animasi (Toggle)</button>
+                </div>
+
+                <div class="code-block">
+<pre>$("button").click(function() {
+  $("div").animate({
+    height: 'toggle'
+  });
+});</pre>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- jQuery Interactivity Code -->
+    <script>
+        $(document).ready(function() {
+            
+            // 1. Hello World Action
+            $("#hello-btn").click(function() {
+                $("#hello-output").html("<span class='hello-p'>Hello, World!</span>");
+            });
+
+            // 2. Hide / Show Effect
+            $("#hide").click(function() {
+                $(".hide-show-p").hide(300); // 300ms untuk transisi yang mulus
+            });
+            $("#show").click(function() {
+                $(".hide-show-p").show(300);
+            });
+
+            // 3. Toggle Height Animation
+            $("#animate-btn").click(function() {
+                $("#anim-box").animate({
+                    height: 'toggle'
+                }, 400); // 400ms durasi animasi
+            });
+            
+        });
+    </script>
+
+</body>
+</html>
